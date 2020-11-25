@@ -5,7 +5,7 @@ config :scorer, Scorer.Repo,
   username: "scorer_user",
   password: "UltraPass#23",
   database: "scorer",
-  hostname: "testdb.rfitzy.net",
+  hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
