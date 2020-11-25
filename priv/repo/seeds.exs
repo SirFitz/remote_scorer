@@ -12,7 +12,7 @@
 users = 1..100
 |> Enum.map(fn(_num)->
     %{
-      points: Enum.random(1..99),
+      points: 0,
       inserted_at: DateTime.utc_now(),
     }
 end)
