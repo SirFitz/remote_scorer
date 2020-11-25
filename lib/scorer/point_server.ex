@@ -25,10 +25,7 @@ defmodule Scorer.PointSever do
 
     users = Scorer.Users.list(max_number, num_of_users)
 
-    current_timestamp =
-      if timestamp do
-        Calendar.strftime(timestamp, "%Y-%m-%d %H:%M:%S")
-      end
+    current_timestamp = format_date_time(timestamp)
 
     reply = %{
       users: users,
@@ -60,6 +57,21 @@ defmodule Scorer.PointSever do
     # In 1 minute
     Process.send_after(self(), :work, 60 * 1000)
   end
+
+  # formats date time to required format if it is not nil
+  # eg: "2020-11-25 01:24:22"
+  defp format_date_time(nil), do: nil
+  defp format_date_time(dt) do
+    date = "#{dt.year}-#{zero_pad(dt.month)}-#{zero_pad(dt.day)}"
+    time = "#{zero_pad(dt.hour)}:#{zero_pad(dt.minute)}:#{zero_pad(dt.second)}"
+    "#{date} #{time}"
+  end
+
+  # pads numbers with zero if it is less than 10
+  defp zero_pad(nil), do: nil
+  defp zero_pad(num) when num < 10, do: "0#{num}"
+  defp zero_pad(num), do: num
+
 
   # Interface methods
 
