@@ -11,7 +11,7 @@ defmodule Scorer.Repo.Migrations.CreateUsers do
     create constraint(
           :users,
           :user_points_must_be_between_0_and_100,
-          check: "points >= 0 and points < 100"
+          check: "points >= 0 and points <= 100"
     )
   end
 end

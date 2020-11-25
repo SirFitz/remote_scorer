@@ -1,16 +1,11 @@
-defmodule ScorerWeb.UserController do
+defmodule ScorerWeb.UsersController do
   use ScorerWeb, :controller
-  require Logger
+
+  action_fallback ScorerWeb.FallbackController
 
   def index(conn, _params) do
-    case Scorer.PointSever.get_users() do
-      {:ok, response} ->
-        conn
-        |> json(response)
-      {:error, data} ->
-        conn
-        |> put_status(500)
-        |> json(data)
-    end
+    data = Scorer.Servers.PointSever.get_users()
+    render(conn, "index.json", data)
   end
+
 end

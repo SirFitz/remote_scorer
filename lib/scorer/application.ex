@@ -14,7 +14,7 @@ defmodule Scorer.Application do
       ScorerWeb.Endpoint,
       # Starts a worker by calling: Scorer.Worker.start_link(arg)
       # {Scorer.Worker, arg},
-      Scorer.PointSever
+      Scorer.Servers.PointSever
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

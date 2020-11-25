@@ -9,19 +9,6 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-users = 1..100
-|> Enum.map(fn(_num)->
-    %{
-      points: 0,
-      inserted_at: DateTime.utc_now(),
-    }
+Enum.each(1..100, fn(_num)->
+    Scorer.Accounts.create_users(%{points: 0})
 end)
-
-case Scorer.Repo.insert_all(Scorer.Users, users) do
-  {100, nil} -> {:ok, "Added Users"}
-  error ->
-    raise """
-      Failed to add all users to database.
-      #{inspect error}
-      """
-end

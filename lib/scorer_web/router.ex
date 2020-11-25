@@ -8,6 +8,6 @@ defmodule ScorerWeb.Router do
   scope "/", ScorerWeb do
     pipe_through :api
 
-    get "/", UserController, :index
+    get "/", UsersController, :index
   end
 end
